@@ -3,5 +3,8 @@ uuid = "60a33e18-bdd0-453c-9007-2fe9d5b0dd1e"
 authors = ["Adam Černý"]
 version = "0.1.0"
 
+[deps]
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+
 [compat]
 julia = "1.4"
