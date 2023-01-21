@@ -1,0 +1,7 @@
+name = "TitanicClassifier"
+uuid = "60a33e18-bdd0-453c-9007-2fe9d5b0dd1e"
+authors = ["Adam Černý"]
+version = "0.1.0"
+
+[compat]
+julia = "1.4"
