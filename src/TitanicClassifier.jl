@@ -1,14 +1,12 @@
 module TitanicClassifier
 
 export greet
-export greet2
-export greet3
 
+include("KnnClassifier.jl")
+include("DecissionTreeClassifier.jl")
 include("ClassificationUtils.jl")
 
-greet() = println("aaaa!")
-greet2() = println("Hello Boy!")
-greet3() = println("Hello Girl")
+greet() = "a"
 
 
 end

@@ -1,3 +1,5 @@
+export classifyDT, get_leaf_value, split_tree, get_best_split, predict, build_tree, information_gain
+
 struct Node
     left::Union{Node, Nothing}
     right::Union{Node, Nothing}
@@ -38,7 +40,7 @@ function get_best_split(X, y, feature_count)
         possible_thresholds = unique(feature_values)
 
         for t in possible_thresholds
-            left, right = split(hcat(X,y), feature_index, t)
+            left, right = split_tree(hcat(X,y), feature_index, t)
 
             if length(left) == 0 || length(right) == 0
                 continue
@@ -48,7 +50,7 @@ function get_best_split(X, y, feature_count)
             y_left, y_right = left[:, size(left)[2]], right[:, size(right)[2]]
             X_left, X_right = left[:, 1:size(left)[2]-1], right[:, 1:size(right)[2]-1]
             ig = information_gain(y, y_left, y_right)
-            println(ig)
+            
             
 
             if ig > max_ig
@@ -83,7 +85,7 @@ function get_leaf_value(y)
     return ret
 end
 
-function split(X, feature_index, threshold)
+function split_tree(X, feature_index, threshold)
     left = X[ X[:, feature_index] .<= threshold, :]
     right = X[ X[:, feature_index] .> threshold, :]
     return left, right
@@ -133,4 +135,8 @@ function print_tree(tree, indent)
         print_tree(tree.right, indent * indent)
     end
 
+end
+
+function classifyDT(X_test, tree::Node)
+    return mapslices(x -> predict(x, tree), X_test; dims=2)
 end
