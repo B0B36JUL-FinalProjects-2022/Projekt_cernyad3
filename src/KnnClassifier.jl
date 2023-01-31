@@ -19,6 +19,6 @@ function classify_point_KNN(x, k, data, labels; kwargs...)
 end
 
 function classifyKNN(X_test, X_train, y_train; k=3, kwargs...)
-    return mapslices(x -> classify_point_KNN(x, k, X_train, y_train; distance = l2_distance), X_test; dims=2)
+    return mapslices(x -> classify_point_KNN(x, k, X_train, y_train; kwargs...), X_test; dims=2)
 end
 
