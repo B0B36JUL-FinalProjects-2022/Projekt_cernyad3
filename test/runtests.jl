@@ -27,16 +27,6 @@ using Test
     @testset "DecissionTreeClassifier.jl" begin
         @test get_leaf_value([1 0 1 1 1]) == 1
         @test get_leaf_value([0 1]) == 0
-    end
-
-    @testset "ClassificationUtils.jl" begin
-        predictions = [1 1 0 1 0]
-        labels = [1 1 1 1 1]
-        @test compute_accuracy(labels, predictions) == 0.6
-
-        predictions = [1 1]
-        labels = [1 1]
-        @test compute_accuracy(labels, predictions) == 1
 
         @test split_tree(X, 2, 3.5) == ([1 2; 1.5 2.5; 1 3], [3 4; 1 5; 3.5 5])
         best_split = get_best_split(X, y, size(X)[2])
@@ -48,7 +38,16 @@ using Test
         @test classifyDT([0 0; 1 1], test_tree) == [0 0]'
 
         @test information_gain([1 1 1 1], [1], [1 1 1]) < information_gain([1 1 0 0], [1 1], [0 0])
-        
+    end
+
+    @testset "ClassificationUtils.jl" begin
+        predictions = [1 1 0 1 0]
+        labels = [1 1 1 1 1]
+        @test compute_accuracy(labels, predictions) == 0.6
+
+        predictions = [1 1]
+        labels = [1 1]
+        @test compute_accuracy(labels, predictions) == 1    
     end
 
 end
