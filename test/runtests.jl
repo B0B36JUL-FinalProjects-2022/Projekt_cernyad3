@@ -34,8 +34,8 @@ using Test
         @test best_split["threshold"] == 1.5
 
         test_tree = build_tree(X, y)
-        @test predict([1 1], test_tree) == 0
-        @test classifyDT([0 0; 1 1], test_tree) == [0 0]'
+        @test predict([0 0], test_tree) == 0
+        @test classifyDT([0 0; 4 4], test_tree) == [0 1]'
 
         @test information_gain([1 1 1 1], [1], [1 1 1]) < information_gain([1 1 0 0], [1 1], [0 0])
     end
