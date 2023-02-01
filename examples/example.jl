@@ -15,7 +15,7 @@ Y_pred = classifyKNN(X_test, X_train, Y_train; k=7, distance = l2_distance)
 acc = compute_accuracy(Y_test, Y_pred)
 println("Accuracy of 7-NN: $acc")
 
-tree = build_tree(X_train, Y_train)
+tree = build_tree(X_train, Y_train; max_depth=3)
 Y_pred = classifyDT(X_test, tree)
 acc = compute_accuracy(Y_test, Y_pred)
 println("Accuracy of DT: $acc")

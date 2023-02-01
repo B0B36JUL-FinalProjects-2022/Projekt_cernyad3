@@ -12,7 +12,7 @@ end
 leaf_node(value) = Node(nothing, nothing, -1, -1, -1, value)
 
 
-function build_tree(X, y; depth=0, min_samples=3, max_depth=3)
+function build_tree(X, y; depth=0, min_samples=3, max_depth=Inf)
     sample_count, feature_count = size(X)
 
     if !(sample_count >= min_samples && depth <= max_depth)
@@ -21,9 +21,9 @@ function build_tree(X, y; depth=0, min_samples=3, max_depth=3)
 
     best_split = get_best_split(X, y, feature_count)
 
-    if best_split["ig"] > 0
-        left = build_tree(best_split["X_left"], best_split["y_left"]; depth=depth+1)
-        right = build_tree(best_split["X_right"], best_split["y_right"]; depth=depth+1)
+    if get(best_split, "ig", 0)  > 0
+        left = build_tree(best_split["X_left"], best_split["y_left"]; depth=depth+1, min_samples=min_samples, max_depth=max_depth)
+        right = build_tree(best_split["X_right"], best_split["y_right"]; depth=depth+1, min_samples=min_samples, max_depth=max_depth)
         return Node(left, right, best_split["feature_index"], best_split["threshold"], best_split["ig"], nothing)
     end
     
