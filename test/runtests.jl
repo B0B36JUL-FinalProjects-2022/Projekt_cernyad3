@@ -43,13 +43,13 @@ using Test
    
 
     @testset "ClassificationUtils.jl" begin
-        predictions = [1 1 0 1 0]
-        labels = [1 1 1 1 1]
-        #@test compute_accuracy(labels, predictions) == 0.6
+        predictions = [1; 1; 0; 1; 0]
+        labels = [1; 1; 1; 1; 1]
+        @test compute_accuracy(labels, predictions) == 0.6
 
-        predictions = [1 1]
-        labels = [1 1]
-        #@test compute_accuracy(labels, predictions) == 1    
+        predictions = [1; 1]
+        labels = [1; 1]
+        @test compute_accuracy(labels, predictions) == 1    
     end
 
 end
