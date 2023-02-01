@@ -99,7 +99,7 @@ function get_best_split(X::Matrix{<:Real}, y::Vector{<:Integer}, feature_count::
             end
             
 
-            y_left, y_right = left[:, size(left)[2]], right[:, size(right)[2]]
+            y_left, y_right = Int.(left[:, size(left)[2]]), Int.(right[:, size(right)[2]])
             X_left, X_right = left[:, 1:size(left)[2]-1], right[:, 1:size(right)[2]-1]
             ig = information_gain(y, y_left, y_right)
             
